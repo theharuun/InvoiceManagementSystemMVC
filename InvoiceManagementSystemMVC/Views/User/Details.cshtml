@@ -1,0 +1,48 @@
+﻿@model InvoiceManagementSystemMVC.Entities.UserAdmin
+
+<h2>User Details</h2>
+
+<div>
+    <h4>User Information</h4>
+    <hr />
+    <dl class="row">
+        <h2>User Details</h2>
+        <dt class="col-sm-2">User ID</dt>
+        <dd class="col-sm-10">@Model.UserId</dd> <!-- Apartmanın adını veya ilgili bilgiyi buraya ekleyin -->
+
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">Surname</dt>
+        <dd class="col-sm-10">@Model.Surname</dd>
+
+        <dt class="col-sm-2">TcNo</dt>
+        <dd class="col-sm-10">@Model.TcNo</dd>
+
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Password</dt>
+        <dd class="col-sm-10">@Model.Password</dd>
+
+
+        <h2>Apartment Details</h2>
+        <dt class="col-sm-2">Apartment Id</dt>
+        <dd class="col-sm-10">@Model.Apartment?.ApartmentId</dd> <!-- Apartmanın adını veya ilgili bilgiyi buraya ekleyin -->
+
+        <dt class="col-sm-2">Apartment Type</dt>
+        <dd class="col-sm-10">@Model.Apartment?.ApartmentTypeNavigation?.ApartmentTypeName</dd>
+
+        <dt class="col-sm-2">Apartment Floor</dt>
+        <dd class="col-sm-10">@Model.Apartment?.Floor</dd> <!-- Apartmanın adını veya ilgili bilgiyi buraya ekleyin -->
+
+        <dt class="col-sm-2">Apartment Block</dt>
+        <dd class="col-sm-10">@Model.Apartment?.Block</dd> <!-- Apartmanın adını veya ilgili bilgiyi buraya ekleyin -->
+
+        
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>

@@ -1,0 +1,37 @@
+﻿@model InvoiceManagementSystemMVC.Entities.Bill
+
+
+<h2>Bill Details</h2>
+<div>
+    <p>Bill ID: @Model.BillId</p>
+    <p>Bill Type: @Model.BillTypeN?.BillTypeName</p> <!-- Eğer BillType sınıfınızda TypeName gibi bir özellik varsa -->
+    <p>Bill Payment: @Model.BillPayment</p>
+    <p>Due Date: @Model.DueDate?.ToShortDateString()</p>
+    <p>Status: @(Model.Status == true ? "Paid" : "Unpaid")</p>
+    <h3>Apartment Details</h3>
+    <p>Apartment ID: @Model.Apartment?.ApartmentId</p>
+    <p>Block: @Model.Apartment?.Block</p>
+    <p>Floor: @Model.Apartment?.Floor</p>
+    <h3>User Details</h3>
+    <p>User Name: @Model.Apartment?.UserAdmin?.Name</p>
+    <p>User Name: @Model.Apartment?.UserAdmin?.Surname</p>
+    <p>User Email: @Model.Apartment?.UserAdmin?.Email</p>
+  
+
+    
+  @if (Context.User.Identity.IsAuthenticated)
+   {
+    var userRole = Context.User.FindFirst("Role")?.Value; // Kullanıcı rolünü al
+    <p>
+            @if (userRole == "Admin")
+            {
+            <a class="btn btn-info" asp-controller="Invoice" asp-action="Index">Back To List</a>
+            }
+            else if (userRole== "User") // Kullanıcı rolü için
+            {
+            <a class="btn btn-info" asp-controller="Invoice" asp-action="UserIndex">Back To List</a>
+            }
+           
+    </p>
+   }
+</div>

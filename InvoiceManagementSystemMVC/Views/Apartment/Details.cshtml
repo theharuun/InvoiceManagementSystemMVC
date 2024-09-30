@@ -1,0 +1,66 @@
+﻿@model InvoiceManagementSystemMVC.Entities.Apartment
+
+<div class="container">
+    <h2>Apartment Details</h2>
+
+    <h3>Apartment Information</h3>
+    <p><strong>Apartment Type:</strong> @Model.ApartmentTypeNavigation?.ApartmentTypeName</p> <!-- Apartment türü -->
+    <p><strong>Floor:</strong> @Model.Floor</p> <!-- Kat -->
+    <p><strong>Block:</strong> @Model.Block</p> <!-- Blok -->
+    <p><strong>Status:</strong> @(Model.Status == true ? "Non available" : "available")</p> <!-- Durum -->
+    @if (Model.UserAdmin != null) // Eğer UserAdmin varsa
+    {
+        <h3>User Admin Information</h3>
+        <p><strong>Name:</strong> @Model.UserAdmin.Name @Model.UserAdmin.Surname</p> <!-- İsim ve soyisim -->
+        <p><strong>Email:</strong> @Model.UserAdmin.Email</p> <!-- E-posta -->
+    }
+
+    <h3>Bill Information</h3>
+    @if (Model.Bills != null && Model.Bills.Any()) // Eğer faturalar varsa
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Bill ID</th>
+                    <th>Bill Type</th>
+                    <th>Bill Payment</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bill in Model.Bills)
+                {
+                    <tr>
+                        <td>@bill.BillId</td>
+                        <td>@bill.BillTypeN?.BillTypeName</td> <!-- Fatura türü -->
+                        <td>@bill.BillPayment</td> <!-- Fatura tutarı -->
+                        <td>@bill.DueDate</td> <!-- Vade tarihi -->
+                        <td>@(bill.Status == true ? "Paid" : "Unpaid")</td> <!-- Fatura durumu -->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No bills found for this apartment.</p> <!-- Eğer fatura yoksa mesaj -->
+    }
+
+
+  @if (Context.User.Identity.IsAuthenticated)
+    {
+        var userRole = Context.User.FindFirst("Role")?.Value; // Kullanıcı rolünü al
+        <p>
+            @if (userRole == "Admin")
+            {
+                <a class="btn btn-info" asp-controller="Apartment" asp-action="Index">Back To List</a>
+            }
+            else if (userRole =="User") // Kullanıcı rolü için
+            {
+            <a class="btn btn-info" asp-controller="Apartment" asp-action="UserIndex">Back To List</a>
+            }
+         
+        </p>
+    }
+</div>

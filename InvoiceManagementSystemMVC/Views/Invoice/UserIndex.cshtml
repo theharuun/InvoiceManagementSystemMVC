@@ -1,0 +1,68 @@
+﻿@model IEnumerable<InvoiceManagementSystemMVC.Entities.Bill>
+
+<div style="text-align: center;">
+    <!-- Başlık için merkezleme div'i -->
+    <h1>Bill List</h1> <!-- Başlık eklendi -->
+</div>
+>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BillId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillPayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-controller="Invoice" asp-action="Details" asp-route-id="@item.BillId">Details</a> 
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="display: flex; justify-content: flex-end; margin-top: 20px; height:50px; width:1120px ; text-align: center;">
+    <a class="btn btn-primary" asp-controller="User" asp-action="SecurePage" style="margin-left: auto;">
+        Back to Main Page
+    </a>
+</div>
+
+

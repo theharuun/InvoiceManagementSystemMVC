@@ -1,0 +1,66 @@
+﻿@model IEnumerable<InvoiceManagementSystemMVC.Entities.UserAdmin>
+
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TcNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentId )
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TcNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentId)
+            </td>
+                <td>
+
+                    <a class="btn btn-primary" asp-controller="User" asp-action="EditUser" asp-route-id="@item.UserId">Edit</a> |
+                    <a class="btn btn-info" asp-controller="User" asp-action="Details" asp-route-id="@item.UserId">Details</a> 
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div style="display: flex; justify-content: flex-end; margin-top: 20px; height:50px; width:1090px ; text-align: center;">
+    <a class="btn btn-primary" asp-controller="User" asp-action="SecurePage" style="margin-left: auto;">
+        Back to Main Page
+    </a>
+</div>

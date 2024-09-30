@@ -1,0 +1,44 @@
+﻿@model InvoiceManagementSystemMVC.Entities.Message
+
+
+<h2>Message Details</h2>
+
+<div>
+    <h4>Content:</h4>
+    <p>@Model.Content</p>
+</div>
+
+<div>
+    <h4>Sender:</h4>
+    <p>@Model.Sender.Name @Model.Sender.Surname</p> <!-- Accessing sender's name directly -->
+</div>
+
+<div>
+    <h4>Receiver:</h4>
+    <p>@Model.Receiver.Name @Model.Receiver.Surname</p> <!-- Accessing receiver's name directly -->
+</div>
+
+<div>
+    <h4>Sent Date:</h4>
+    <p>@Model.SentDate.ToString("g")</p> <!-- Format date as needed -->
+</div>
+
+<a class="btn btn-success" asp-controller="Message" asp-action="SendMessage" asp-route-userId="@Model.ReceiverId">New Message</a>
+
+
+  @if (Context.User.Identity.IsAuthenticated)
+   {
+    var userRole = Context.User.FindFirst("Role")?.Value; // Kullanıcı rolünü al
+        <p>
+        @if (userRole == "Admin")
+            {
+                <a class="btn btn-secondary" asp-controller="Message" asp-action="ListMessage" >Back to Messages</a>
+
+            }
+        @if (userRole == "User")
+            {
+                <a class="btn btn-info" asp-controller="Message" asp-action="UserIndex">Back To Messages</a>
+            }
+          
+        </p>
+     }

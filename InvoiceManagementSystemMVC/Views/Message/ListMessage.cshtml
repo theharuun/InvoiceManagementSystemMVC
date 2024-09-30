@@ -1,0 +1,64 @@
+﻿
+<h2>Incoming Messages</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sender</th>
+            <th>Content</th>
+            <th>Sent Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in ViewData["ReceivedMessages"] as List<InvoiceManagementSystemMVC.Entities.Message>)
+        {
+            <tr>
+                <td>@message.Sender.Name</td> <!-- Sender kullanıcı adını burada gösterebilirsiniz -->
+                <td>@message.Content</td>
+                <td>@message.SentDate.ToShortDateString()</td>
+                <td>
+
+                    <a class="btn btn-info" asp-controller="Message" asp-action="Details" asp-route-id="@message.MessageId">Details</a> |
+                    <a class="btn btn-danger" asp-controller="Message" asp-action="Delete" asp-route-id="@message.MessageId">Delete</a>|
+                    <a class="btn btn-secondary" asp-controller="Message" asp-action="Index" asp-route-userId="@message.SenderId">Messages</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Outgoing Messages</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Receiver</th>
+            <th>Content</th>
+            <th>Sent Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in ViewData["SentMessages"] as List<InvoiceManagementSystemMVC.Entities.Message>)
+        {
+            <tr>
+                <td>@message.Receiver.Name</td> <!-- Receiver kullanıcı adını burada gösterebilirsiniz -->
+                <td>@message.Content</td>
+                <td>@message.SentDate.ToShortDateString()</td>
+                <td>
+
+                    <a class="btn btn-info" asp-controller="Message" asp-action="Details" asp-route-id="@message.MessageId">Details</a> |
+                    <a class="btn btn-danger" asp-controller="Message" asp-action="Delete" asp-route-id="@message.MessageId">Delete</a>|
+                    <a class="btn btn-secondary" asp-controller="Message" asp-action="Index" asp-route-userId="@message.ReceiverId">Messages</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="display: flex; justify-content: flex-end; margin-top: 20px; height:50px; width:1190px ; text-align: center;">
+    <a class="btn btn-primary" asp-controller="Admin" asp-action="SecurePage" style="margin-left: auto;">
+        Back to Main Page
+    </a>
+</div>

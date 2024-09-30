@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .nav-list-admin {
+        display: flex; /* Flexbox kullan */
+        list-style: none; /* Liste işaretlerini kaldır */
+        padding: 0; /* Varsayılan iç boşlukları kaldır */
+        margin: 0; /* Varsayılan dış boşlukları kaldır */
+        justify-content: center; /* Elemanları yatayda ortala */
+        margin-top: 150px; /* Listenin üst kısmına boşluk ekle */
+    }
+
+    .nav-item-admin {
+        position: relative; /* Konumlandırma için */
+        margin-right: 150px; /* Elemanlar arasına boşluk ekle */
+    }
+
+    .nav-link-admin {
+        display: block; /* Tam alan kaplaması için */
+        width: 150px; /* Buton genişliği */
+        height: 150px; /* Buton yüksekliği */
+        text-align: center; /* Metni ortala */
+        color: white; /* Yazı rengini beyaz yap */
+        text-decoration: none; /* Alt çizgiyi kaldır */
+        background-size: cover; /* Arka plan resmini kaplamak için */
+        border-radius: 8px; /* Kenarları yuvarla */
+    }
+
+    .users-link-admin {
+        background-image: url('https://w7.pngwing.com/pngs/421/822/png-transparent-users-group-encapsulated-postscript-user-profile-group-miscellaneous-black-information-thumbnail.png'); /* Kullanıcı resmi URL'si */
+    }
+    .invoices-link-admin {
+        background-image: url('https://e7.pngegg.com/pngimages/178/217/png-clipart-invoice-computer-icons-business-text-service.png'); /* Fatura resmi URL'si */
+    }
+
+    .apartments-link-admin {
+        background-image: url('https://e7.pngegg.com/pngimages/71/897/png-clipart-beige-concrete-building-illustration-building-apartment-scape-house-building-building-condominium-thumbnail.png'); /* Daire resmi URL'si */
+    }
+
+    .messages-link-admin {
+        background-image: url('https://png.pngtree.com/png-vector/20190129/ourmid/pngtree-message-vector-icon-png-image_355784.jpg');
+    }
+
+    }
+</style>
+
+<div class="text-center" style="margin-top: 50px;">
+    <h1 class="display-4">Welcome Invoice Management System</h1>
+</div>
+
+<div class="text-center" style="margin-top: 50px;">
+    <ul class="nav-list-admin">
+        <li class="nav-item-admin">
+            <a class="nav-link-admin users-link-admin" asp-controller="Admin" asp-action="Index"></a>
+        </li>
+        <li class="nav-item-admin">
+            <a class="nav-link-admin invoices-link-admin" asp-controller="Invoice" asp-action="Index"></a>
+        </li>
+        <li class="nav-item-admin">
+            <a class="nav-link-admin apartments-link-admin" asp-controller="Apartment" asp-action="Index"></a>
+        </li>
+        <li class="nav-item-admin">
+            <a class="nav-link-admin messages-link-admin" asp-controller="Message" asp-action="ListMessage"></a>
+        </li>
+    </ul>
+</div>

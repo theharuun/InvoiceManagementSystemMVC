@@ -1,0 +1,70 @@
+﻿@model IEnumerable<InvoiceManagementSystemMVC.Entities.Apartment>
+
+<div style="text-align: center;">
+    <!-- Başlık için merkezleme div'i -->
+    <h1>Apartment List</h1> <!-- Başlık eklendi -->
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Floor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Block)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Floor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Block)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+
+                   
+                    <a class="btn btn-info" asp-controller="Apartment" asp-action="Details" asp-route-id="@item.ApartmentId">Details</a> 
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="display: flex; justify-content: flex-end; margin-top: 20px; height:50px; width:1090px ; text-align: center;">
+    <a class="btn btn-primary" asp-controller="User" asp-action="SecurePage" style="margin-left: auto;">
+        Back to Main Page
+    </a>
+</div>
+
+

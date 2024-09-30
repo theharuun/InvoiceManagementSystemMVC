@@ -1,0 +1,62 @@
+﻿@model IEnumerable<InvoiceManagementSystemMVC.Entities.Message>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().MessageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().SentDate)
+            </th>
+            <th>
+                Sender
+            </th>
+            <th>
+                Reciever
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sender.Name) 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Receiver.Name) 
+                </td>
+                <td>
+                   
+                    <a class="btn btn-info" asp-controller="Message" asp-action="Details" asp-route-id="@item.MessageId">Details</a> |
+                    <a class="btn btn-danger" asp-controller="Message" asp-action="Delete" asp-route-id="@item.MessageId">Delete</a>|
+                
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index" asp-controller="Admin"  class="btn btn-primary">Back to List</a>
+    <!-- Tablonun altına yerleştirilmiş New Message butonu -->
+    @if (Model.Any())
+    {
+        <!-- Son mesajın ReceiverId'sini alarak 'New Message' butonu oluşturuyoruz -->
+        <a class="btn btn-success" asp-controller="Message" asp-action="SendMessage" asp-route-userId="@Model.Last().ReceiverId">New Message</a>
+    }
+</div>

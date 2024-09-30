@@ -1,0 +1,57 @@
+﻿@model IEnumerable<InvoiceManagementSystemMVC.Entities.Message>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().MessageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().SentDate)
+            </th>
+            <th>
+                Sender
+            </th>
+            <th>
+                Reciever
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sender.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Receiver.Name)
+                </td>
+                <td>
+
+                    <a class="btn btn-info" asp-controller="Message" asp-action="Details" asp-route-id="@item.MessageId">Details</a> |
+                    <a class="btn btn-danger" asp-controller="Message" asp-action="Delete" asp-route-id="@item.MessageId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="display: flex; justify-content: flex-end; margin-top: 20px; height:50px; width:1090px ; text-align: center;">
+    <a class="btn btn-primary" asp-controller="User" asp-action="SecurePage" style="margin-left: auto;">
+        Back to Main Page
+    </a>
+    <a class="btn btn-success" asp-controller="Message" asp-action="SendMessageByUser" asp-route-receiverId="9" asp-route-userId="@ViewBag.UserId">New Message</a>
+</div>
